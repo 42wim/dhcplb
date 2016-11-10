@@ -11,7 +11,7 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/facebookincubator/dhcplb/lib"
+	"github.com/42wim/dhcplb/lib"
 )
 
 // DefaultConfigProvider holds configuration for the server.

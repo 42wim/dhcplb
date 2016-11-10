@@ -12,7 +12,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/facebookincubator/dhcplb/lib"
+	"github.com/42wim/dhcplb/lib"
 	"github.com/golang/glog"
 	"net/http"
 	_ "net/http/pprof"

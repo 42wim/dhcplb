@@ -14,7 +14,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/facebookincubator/dhcplb/lib"
+	"github.com/42wim/dhcplb/lib"
 	"github.com/golang/glog"
 	"github.com/krolaw/dhcp4"
 )
