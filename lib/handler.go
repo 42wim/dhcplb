@@ -96,6 +96,13 @@ func selectDestinationServer(config *Config, message *DHCPMessage) (*DHCPServer,
 	return server, err
 }
 
+func handleDrop(config *Config, message *DHCPMessage) bool {
+	if override, ok := config.Overrides[FormatID(message.Mac)]; ok {
+		return override.Drop
+	}
+	return false
+}
+
 func handleOverride(config *Config, message *DHCPMessage) (*DHCPServer, error) {
 	if override, ok := config.Overrides[FormatID(message.Mac)]; ok {
 		// Checking if override is expired. If so, ignore it. Expiration field should
@@ -266,6 +273,11 @@ func handleRawPacketV6(logger loggerHelper, config *Config, buffer []byte, peer 
 	hops, _ := packet.Hops()
 	link, _ := packet.LinkAddr()
 	peerAddr, _ := packet.PeerAddr()
+
+	if handleDrop(config, &message) {
+		glog.Infof("Dropping MAC %s", FormatID(mac))
+		return
+	}
 
 	server, err := selectDestinationServer(config, &message)
 	if err != nil {

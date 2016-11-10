@@ -53,6 +53,7 @@ type Override struct {
 	Host       string `json:"host"`
 	Tier       string `json:"tier"`
 	Expiration string `json:"expiration"`
+	Drop       bool   `json:"drop"`
 }
 
 // Overrides is a struct that holds v4 and v6 list of overrides.
