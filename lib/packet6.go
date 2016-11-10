@@ -66,6 +66,7 @@ const (
 	InterfaceID
 	ReconfigureMessage
 	ReconfigureAccept
+	IAPD = iota + 6
 )
 
 // DuidType is a uint16 integer, there can be 3 of them, see the enum below.
@@ -218,6 +219,15 @@ func (p Packet6) GetInnerMostPeerAddr() (net.IP, error) {
 		}
 	}
 	return addr, nil
+}
+
+// IAPD returns the IAPD field in Packet6
+func (p Packet6) IAPD() ([]byte, error) {
+	m, err := p.dhcp6message()
+	if err != nil {
+		return nil, err
+	}
+	return m.getOption(IAPD)
 }
 
 // Mac returns the Mac addressed embededded in the DUID, note that this only

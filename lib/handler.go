@@ -268,6 +268,14 @@ func handleRawPacketV6(logger loggerHelper, config *Config, buffer []byte, peer 
 		logger.LogErr(start, nil, packet, peer, ErrParse, err)
 		return
 	}
+
+	// skip IAPD questions
+	_, err = packet.IAPD()
+	if err == nil {
+		glog.Infof("Dropping PD %s", FormatID(mac))
+		return
+	}
+
 	message.Mac = mac
 
 	hops, _ := packet.Hops()
