@@ -34,6 +34,14 @@
 			"notests": true
 		},
 		{
+			"importpath": "github.com/mdlayher/eui64",
+			"repository": "https://github.com/mdlayher/eui64",
+			"vcs": "git",
+			"revision": "eee6532bb9adf30c2a17e9963ed90aa14161dae9",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "golang.org/x/net/bpf",
 			"repository": "https://go.googlesource.com/net",
 			"vcs": "git",
